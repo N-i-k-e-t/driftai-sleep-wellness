@@ -1,0 +1,23 @@
+{
+  "name": "Sleepzy - Sleep Better",
+  "short_name": "Sleepzy",
+  "description": "Your AI sleep & wellness companion. Track sleep, play ambient sounds, and get personalised insights.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f0a2e",
+  "theme_color": "#0f0a2e",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["health", "lifestyle", "wellness"],
+  "icons": [
+    {
+      "src": "/moon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
