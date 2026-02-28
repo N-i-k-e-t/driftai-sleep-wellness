@@ -6,6 +6,8 @@ import Tracker from './pages/Tracker'
 import Insights from './pages/Insights'
 import Profile from './pages/Profile'
 import Auth from './pages/Auth'
+import Pricing from './pages/Pricing'
+import PaymentSuccess from './pages/PaymentSuccess'
 import Layout from './components/Layout'
 
 export default function App() {
@@ -13,6 +15,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/payment-success" element={<PaymentSuccess />} />
       <Route element={<Layout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/sounds" element={<Sounds />} />
