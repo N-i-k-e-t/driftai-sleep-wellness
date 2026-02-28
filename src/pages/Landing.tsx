@@ -51,6 +51,13 @@ export default function Landing() {
           </div>
         </div>
       </main>
+            <footer className="border-t border-purple-900/20 mt-12 py-6 text-center">
+        <div className="flex justify-center gap-6 text-drift-muted text-sm">
+          <Link to="/terms" className="hover:text-drift-text transition">Terms & Conditions</Link>
+          <Link to="/privacy" className="hover:text-drift-text transition">Privacy Policy</Link>
+        </div>
+        <p className="text-drift-muted text-xs mt-2">© 2025 Sleepzy. All rights reserved.</p>
+      </footer>
     </div>
   )
 }
