@@ -15,11 +15,39 @@ export default function Auth() {
     e.preventDefault()
     setLoading(true)
     setError('')
+
     try {
-      const { error: authError } = isLogin
-        ? await supabase.auth.signInWithPassword({ email, password })
-        : await supabase.auth.signUp({ email, password })
-      if (authError) throw authError
+      if (isLogin) {
+        const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
+        if (authError) throw authError
+      } else {
+        const { data, error: authError } = await supabase.auth.signUp({ email, password })
+        if (authError) throw authError
+
+        if (data.user) {
+          // Create profile
+          const { error: profileError } = await supabase.from('profiles').upsert({
+            id: data.user.id,
+            email: data.user.email,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          }, { onConflict: 'id' })
+          if (profileError) console.error('Profile creation error:', profileError)
+
+          // Create trial subscription
+          const trialEnd = new Date()
+          trialEnd.setDate(trialEnd.getDate() + 3)
+          const { error: subError } = await supabase.from('subscriptions').upsert({
+            user_id: data.user.id,
+            status: 'trial',
+            plan: 'trial',
+            trial_ends_at: trialEnd.toISOString(),
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          }, { onConflict: 'user_id' })
+          if (subError) console.error('Subscription creation error:', subError)
+        }
+      }
       navigate('/dashboard')
     } catch (err: any) {
       setError(err.message)
