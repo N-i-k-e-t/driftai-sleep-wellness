@@ -34,7 +34,7 @@ export default function Auth() {
         <div className="text-center mb-8">
           <Moon className="text-drift-accent mx-auto mb-3" size={32} />
           <h1 className="text-2xl font-bold">{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
-          <p className="text-drift-muted text-sm mt-1">Sleep better with DriftAI</p>
+          <p className="text-drift-muted text-sm mt-1">Sleep better with Sleepzy</p>
         </div>
         {error && <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-3 rounded-xl mb-4">{error}</div>}
         <form onSubmit={handleSubmit} className="space-y-4">
