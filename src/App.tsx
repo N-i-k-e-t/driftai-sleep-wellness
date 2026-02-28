@@ -9,6 +9,8 @@ import Auth from './pages/Auth'
 import Pricing from './pages/Pricing'
 import PaymentSuccess from './pages/PaymentSuccess'
 import Layout from './components/Layout'
+import Terms from './pages/Terms'
+import Privacy from './pages/Privacy'
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
       <Route path="/auth" element={<Auth />} />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/payment-success" element={<PaymentSuccess />} />
+              <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
       <Route element={<Layout />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/sounds" element={<Sounds />} />
