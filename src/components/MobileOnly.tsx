@@ -1,24 +1,20 @@
 import { useEffect, useState, ReactNode } from 'react'
+import { useLocation } from 'react-router-dom'
 
 function QRCode() {
   return (
     <div className="w-36 h-36 bg-white rounded-2xl flex items-center justify-center p-2 mx-auto mt-4">
-      {/* QR code placeholder - shows URL encoded as simple pattern */}
       <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect width="100" height="100" fill="white"/>
-        {/* Top-left finder */}
         <rect x="5" y="5" width="30" height="30" fill="black"/>
         <rect x="10" y="10" width="20" height="20" fill="white"/>
         <rect x="14" y="14" width="12" height="12" fill="black"/>
-        {/* Top-right finder */}
         <rect x="65" y="5" width="30" height="30" fill="black"/>
         <rect x="70" y="10" width="20" height="20" fill="white"/>
         <rect x="74" y="14" width="12" height="12" fill="black"/>
-        {/* Bottom-left finder */}
         <rect x="5" y="65" width="30" height="30" fill="black"/>
         <rect x="10" y="70" width="20" height="20" fill="white"/>
         <rect x="14" y="74" width="12" height="12" fill="black"/>
-        {/* Data modules pattern */}
         <rect x="42" y="5" width="5" height="5" fill="black"/>
         <rect x="52" y="5" width="5" height="5" fill="black"/>
         <rect x="42" y="15" width="5" height="5" fill="black"/>
@@ -57,10 +53,13 @@ interface MobileOnlyProps {
 export default function MobileOnly({ children }: MobileOnlyProps) {
   const [isDesktop, setIsDesktop] = useState(false)
   const [checked, setChecked] = useState(false)
+  const location = useLocation()
+
+  // Only block on the landing page (/)
+  const isLandingPage = location.pathname === '/'
 
   useEffect(() => {
     const checkDevice = () => {
-      // Detect desktop: screen width > 768px AND not a touch device
       const isWide = window.innerWidth > 768
       const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0
       const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -76,7 +75,8 @@ export default function MobileOnly({ children }: MobileOnlyProps) {
 
   if (!checked) return null
 
-  if (isDesktop) {
+  // Show blocker only on landing page when desktop is detected
+  if (isDesktop && isLandingPage) {
     return (
       <div
         style={{
@@ -89,16 +89,8 @@ export default function MobileOnly({ children }: MobileOnlyProps) {
           padding: '24px',
         }}
       >
-        <div
-          style={{
-            textAlign: 'center',
-            maxWidth: '420px',
-            color: 'white',
-          }}
-        >
-          {/* Moon icon */}
+        <div style={{ textAlign: 'center', maxWidth: '420px', color: 'white' }}>
           <div style={{ fontSize: '64px', marginBottom: '16px' }}>🌙</div>
-
           <h1
             style={{
               fontSize: '28px',
@@ -111,31 +103,13 @@ export default function MobileOnly({ children }: MobileOnlyProps) {
           >
             Sleepzy
           </h1>
-
-          <p
-            style={{
-              fontSize: '18px',
-              fontWeight: 600,
-              color: '#e2e8f0',
-              marginBottom: '8px',
-            }}
-          >
+          <p style={{ fontSize: '18px', fontWeight: 600, color: '#e2e8f0', marginBottom: '8px' }}>
             This app is designed for smartphones
           </p>
-
-          <p
-            style={{
-              fontSize: '14px',
-              color: '#94a3b8',
-              marginBottom: '28px',
-              lineHeight: '1.6',
-            }}
-          >
+          <p style={{ fontSize: '14px', color: '#94a3b8', marginBottom: '28px', lineHeight: '1.6' }}>
             Sleepzy is a mobile-first Progressive Web App (PWA).<br />
             For the best experience, open it on your phone.
           </p>
-
-          {/* Phone mockup visual */}
           <div
             style={{
               display: 'inline-block',
@@ -151,8 +125,6 @@ export default function MobileOnly({ children }: MobileOnlyProps) {
               Open on your phone
             </p>
           </div>
-
-          {/* Instructions */}
           <div
             style={{
               background: 'rgba(255,255,255,0.04)',
@@ -172,7 +144,7 @@ export default function MobileOnly({ children }: MobileOnlyProps) {
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                 <span style={{ fontSize: '18px' }}>2️⃣</span>
-                <span style={{ color: '#cbd5e1', fontSize: '14px' }}>Tap <strong style={{ color: 'white' }}>"Add to Home Screen"</strong> to install as an app</span>
+                <span style={{ color: '#cbd5e1', fontSize: '14px' }}>Tap <strong style={{ color: 'white' }}>&quot;Add to Home Screen&quot;</strong> to install as an app</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                 <span style={{ fontSize: '18px' }}>3️⃣</span>
@@ -180,14 +152,11 @@ export default function MobileOnly({ children }: MobileOnlyProps) {
               </div>
             </div>
           </div>
-
-          {/* QR Code */}
           <div>
             <p style={{ color: '#64748b', fontSize: '12px', marginBottom: '4px' }}>Or scan this QR code with your phone</p>
             <QRCode />
             <p style={{ color: '#475569', fontSize: '11px', marginTop: '8px' }}>sleepzy.andsnetwork.com</p>
           </div>
-
           <p style={{ color: '#334155', fontSize: '11px', marginTop: '24px' }}>
             © 2026 Sleepzy — Algeina Technology LLP (ANTS Network)
           </p>
