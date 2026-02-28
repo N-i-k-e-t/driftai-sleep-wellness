@@ -24,7 +24,7 @@ export default function Landing() {
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-white via-drift-glow to-drift-accent bg-clip-text text-transparent">Sleep Smarter with AI</h1>
           <p className="text-drift-muted text-lg mb-8">Your personal AI companion for better sleep and wellness</p>
           <Link to="/auth" className="inline-block bg-drift-accent hover:bg-purple-600 text-white font-semibold px-8 py-3 rounded-full transition-all shadow-lg shadow-purple-500/25">Start Free Trial</Link>
-          <p className="text-drift-muted text-xs mt-3">7-day free trial, then Rs.199/mo</p>
+          <p className="text-drift-muted text-xs mt-3">3-day free trial, then Rs.199/mo</p>
         </div>
         <div className="space-y-4">
           {features.map(({ icon: Icon, title, desc }) => (
