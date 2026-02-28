@@ -8,6 +8,7 @@ export default function Profile() {
   const [subscription, setSubscription] = useState<any>(null)
   const [daysLeft, setDaysLeft] = useState(0)
   const [isPaid, setIsPaid] = useState(false)
+  const [trialExpired, setTrialExpired] = useState(false)
 
   useEffect(() => {
     checkSubscription()
@@ -16,13 +17,11 @@ export default function Profile() {
   const checkSubscription = async () => {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
-
     const { data: sub } = await supabase
       .from('subscriptions')
       .select('*')
       .eq('user_id', user.id)
       .single()
-
     if (sub) {
       setSubscription(sub)
       setIsPaid(sub.status === 'active')
@@ -34,6 +33,7 @@ export default function Profile() {
         setDaysLeft(remaining)
         if (remaining <= 0) {
           setIsPaid(false)
+          setTrialExpired(true)
         }
       }
     }
@@ -52,6 +52,13 @@ export default function Profile() {
     return 'Trial Expired - Upgrade Now'
   }
 
+  const getHeaderStatus = () => {
+    if (isPaid) return 'Premium Active'
+    if (daysLeft > 0) return `Free Trial - ${daysLeft} days left`
+    if (trialExpired) return 'Trial Expired'
+    return 'Free Trial Active'
+  }
+
   const menuItems = [
     { icon: User, label: 'Edit Profile', desc: 'Update your name and details' },
     { icon: Bell, label: 'Notifications', desc: 'Manage sleep reminders' },
@@ -66,9 +73,8 @@ export default function Profile() {
           {isPaid ? <Crown size={32} className="text-yellow-400" /> : <User size={32} className="text-white" />}
         </div>
         <h1 className="text-xl font-bold">{isPaid ? 'Premium Member' : 'Sleep Explorer'}</h1>
-        <p className="text-drift-muted text-sm">{isPaid ? 'Premium Active' : 'Free Trial Active'}</p>
+        <p className="text-drift-muted text-sm">{getHeaderStatus()}</p>
       </div>
-
       <div className="space-y-2">
         {menuItems.map(({ icon: Icon, label, desc, action }) => (
           <button key={label} onClick={action} className="w-full bg-drift-card rounded-2xl p-4 border border-purple-900/20 flex items-center gap-3 text-left hover:border-drift-accent/30 transition">
@@ -78,7 +84,6 @@ export default function Profile() {
           </button>
         ))}
       </div>
-
       <button onClick={handleLogout} className="w-full bg-red-500/10 border border-red-500/20 text-red-400 font-medium py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-red-500/20 transition">
         <LogOut size={16} /> Sign Out
       </button>
