@@ -15,7 +15,7 @@ export default function Landing() {
       <header className="px-6 py-4 flex justify-between items-center max-w-md mx-auto">
         <div className="flex items-center gap-2">
           <Moon className="text-drift-accent" size={24} />
-          <span className="text-xl font-bold bg-gradient-to-r from-drift-accent to-drift-glow bg-clip-text text-transparent">DriftAI</span>
+          <span className="text-xl font-bold bg-gradient-to-r from-drift-accent to-drift-glow bg-clip-text text-transparent">Sleepzy</span>
         </div>
         <Link to="/auth" className="text-sm text-drift-muted hover:text-drift-text transition">Sign In</Link>
       </header>
