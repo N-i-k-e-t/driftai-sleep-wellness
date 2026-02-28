@@ -20,6 +20,7 @@ export default function Terms() {
         <section>
           <h2 className="text-white font-semibold text-base mb-2">2. Description of Service</h2>
           <p>Sleepzy is an AI-powered sleep wellness application that provides sleep tracking, ambient soundscapes, sleep analytics, and personalised recommendations. The App is operated by Algeina Technology LLP under the ANTS Network brand. <strong className="text-white">The App is not a medical device and is not intended to diagnose, treat, cure, or prevent any medical condition.</strong> It should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional regarding any sleep-related health concerns.</p>
+                    <p className="mt-2"><strong className="text-white">Sleepzy is a smartphone-only Progressive Web App (PWA).</strong> It is designed and optimised exclusively for mobile devices. If you access the Service on a desktop or non-mobile device, you will be shown instructions to open it on your smartphone. Algeina Technology LLP does not guarantee full functionality or compatibility on desktop browsers.</p>
         </section>
 
         <section>
