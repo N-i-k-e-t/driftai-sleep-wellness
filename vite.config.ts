@@ -8,8 +8,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'DriftAI - Sleep Better',
-        short_name: 'DriftAI',
+        name: 'Sleepzy - Sleep Better',
+        short_name: 'Sleepzy',
         description: 'AI Sleep & Wellness Companion',
         theme_color: '#0f0a2e',
         background_color: '#0f0a2e',
