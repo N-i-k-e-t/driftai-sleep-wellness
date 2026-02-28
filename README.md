@@ -1,2 +1,5 @@
-# driftai-sleep-wellness
-DriftAI - AI Sleep &amp; Wellness Companion PWA
+# Sleepzy
+
+Sleepzy - AI Sleep & Wellness Companion PWA
+
+Built with React + Vite + Supabase + Tailwind CSS
