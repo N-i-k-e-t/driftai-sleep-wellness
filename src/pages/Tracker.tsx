@@ -8,7 +8,6 @@ const maxH = Math.max(...weekData.map(d => d.hours))
 
 export default function Tracker() {
   const avg = (weekData.reduce((s, d) => s + d.hours, 0) / 7).toFixed(1)
-
   return (
     <div className="space-y-6">
       <div><h1 className="text-2xl font-bold">Sleep Tracker</h1><p className="text-drift-muted text-sm">Your weekly sleep overview</p></div>
@@ -28,11 +27,11 @@ export default function Tracker() {
       </div>
       <div className="bg-drift-card rounded-2xl p-5 border border-purple-900/20">
         <p className="text-sm font-medium mb-4">This Week</p>
-        <div className="flex items-end justify-between gap-2 h-40">
+        <div className="flex items-end justify-between gap-2" style={{ height: '160px' }}>
           {weekData.map(({ day, hours }) => (
-            <div key={day} className="flex-1 flex flex-col items-center gap-1">
+            <div key={day} className="flex-1 flex flex-col items-center justify-end h-full gap-1">
               <span className="text-[10px] text-drift-muted">{hours}h</span>
-              <div className="w-full rounded-t-lg bg-gradient-to-t from-drift-accent to-drift-glow transition-all" style={{ height: `${(hours / maxH) * 100}%` }} />
+              <div className="w-full rounded-t-lg bg-gradient-to-t from-drift-accent to-drift-glow" style={{ height: `${(hours / maxH) * 100}%`, minHeight: '4px' }} />
               <span className="text-[10px] text-drift-muted">{day}</span>
             </div>
           ))}
