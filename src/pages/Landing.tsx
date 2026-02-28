@@ -55,9 +55,9 @@ export default function Landing() {
         <div className="flex justify-center gap-6 text-drift-muted text-sm">
           <Link to="/terms" className="hover:text-drift-text transition">Terms & Conditions</Link>
           <Link to="/privacy" className="hover:text-drift-text transition">Privacy Policy</Link>
+                    <Link to="/refund" className="hover:text-drift-text transition">Refund Policy</Link>
         </div>
-        <p className="text-drift-muted text-xs mt-2">© 2025 Sleepzy. All rights reserved.</p>
-      </footer>
+        <p className="text-drift-muted text-xs mt-2">© 2026 Sleepzy — A product of Algeina Technology LLP (ANTS Network). All rights reserved.</p>      </footer>
     </div>
   )
 }
