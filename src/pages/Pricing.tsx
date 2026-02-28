@@ -46,7 +46,7 @@ export default function Pricing() {
       }
 
       // PayPal redirect URL
-      const paypalURL = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${import.meta.env.VITE_PAYPAL_BUSINESS_EMAIL || 'niketpatil@andsnetwork.com'}&item_name=DriftAI ${plan.name} Plan&amount=${amount}&currency_code=${currency}&return=${window.location.origin}/payment-success?plan=${planId}&user=${user.id}&cancel_return=${window.location.origin}/pricing`
+      const paypalURL = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${import.meta.env.VITE_PAYPAL_BUSINESS_EMAIL || 'niketpatil@andsnetwork.com'}&item_name=Sleepzy ${plan.name} Plan&amount=${amount}&currency_code=${currency}&return=${window.location.origin}/payment-success?plan=${planId}&user=${user.id}&cancel_return=${window.location.origin}/pricing`
 
       window.location.href = paypalURL
     } catch (err) {
