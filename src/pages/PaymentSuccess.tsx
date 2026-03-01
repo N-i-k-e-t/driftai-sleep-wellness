@@ -20,9 +20,9 @@ export default function PaymentSuccess() {
         supabase.from('subscriptions').upsert({
           user_id: data.user.id, status: 'pro', plan,
           updated_at: new Date().toISOString()
-        }, { onConflict: 'user_id' }).catch(() => {})
+        }, { onConflict: 'user_id' })
         supabase.from('payment_logs').update({ status: 'completed' })
-          .eq('user_id', data.user.id).eq('status', 'initiated').catch(() => {})
+          .eq('user_id', data.user.id).eq('status', 'initiated')
       }
     })
   }, [])
@@ -52,14 +52,14 @@ export default function PaymentSuccess() {
           <div className="flex justify-between font-bold text-lg border-t border-purple-900/20 pt-2 mt-2">
             <span>Total</span><span className="text-drift-accent">Rs.{amount}</span>
           </div>
-          <div className="flex justify-between text-xs"><span className="text-drift-muted">Payment Method</span><span>PayPal</span></div>
-          <div className="flex justify-between text-xs"><span className="text-drift-muted">Status</span><span className="text-green-400">Paid</span></div>
         </div>
-
-        <p className="text-[10px] text-drift-muted text-center mt-4">
-          Algeina Technology LLP (ANTS Network) &bull; Nashik, India
-        </p>
+        <div className="flex justify-between text-xs"><span className="text-drift-muted">Payment Method</span><span>PayPal</span></div>
+        <div className="flex justify-between text-xs"><span className="text-drift-muted">Status</span><span className="text-green-400">Paid</span></div>
       </div>
+
+      <p className="text-[10px] text-drift-muted text-center mt-4">
+        Algeina Technology LLP (ANTS Network) &bull; Nashik, India
+      </p>
 
       <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-4 mb-6 text-center">
         <Camera className="text-yellow-400 mx-auto mb-2" size={24} />
